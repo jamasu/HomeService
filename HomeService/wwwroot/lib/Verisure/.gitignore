@@ -1,0 +1,10 @@
+
+.idea/*
+
+node_modules/*
+
+config.js
+
+npm-debug.log
+
+test.js
