@@ -1,7 +1,7 @@
 
 	var config = {
-		username: 'suleiman.jama@icloud.com',
-		password: 'SLamdu&6'
+		username: '',
+		password: ''
 	};
 
 
