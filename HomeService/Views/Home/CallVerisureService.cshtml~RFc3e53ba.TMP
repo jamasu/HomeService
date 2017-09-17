@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HomeService.Controllers.ClimateData>
-<meta http-equiv="refresh" content="5" />
+
 <table class="table table-hover">
 
 	<thead>
@@ -33,13 +33,14 @@
 					{
 						<p style="color:red">@data.Humidity % </p>
 					}
-
+					@if(data.Humidity == 0)
+						@data.Humidity = "N/A";
 					else
 					{
-						<p>@data.Humidity %</p>
+						<p> @data.Humidity if/p>
 
 					}
-
+					
 				</td>
 				<td>
 					@data.Timestamp
@@ -50,9 +51,9 @@
 					{
 						<p style="color:red">Høy fuktighet! </p>
 					}
-					@if (data.Humidity <= 55 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22 || data.Humidity == 0)
+					@if (data.Humidity <=55 && data.Humidity >= 40  && data.Temperature >=18 && data.Temperature <=22 || data.Humidity ==0) 
 					{
-						<p>OK</p>
+						<p >OK</p>
 					}
 					@if (data.Humidity < 40 && data.Humidity != 0)
 					{
@@ -63,11 +64,7 @@
 					{
 						<p style="color:red"> For kaldt brrr! </p>
 					}
-					@if (data.Temperature > 22.0)
-					{
-						<p style="color:red"> Varmt! </p>
-					}
-
+					
 				</td>
 			</tr>
 

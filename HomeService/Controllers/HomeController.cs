@@ -31,7 +31,7 @@ namespace HomeService.Controllers
                 if (climateDataRaw[i].Humidity.Equals(string.Empty))
                     climateData[i].Humidity = 0;
                 else
-                    climateData[i].Humidity = (float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%'))) > 0) ? climateData[i].Humidity : 0;
+                    climateData[i].Humidity = float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%')));
                 climateData[i].Location = climateDataRaw[i].Location;
                 climateData[i].Timestamp = climateDataRaw[i].Timestamp;
 
