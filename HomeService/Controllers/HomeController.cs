@@ -19,11 +19,22 @@ namespace HomeService.Controllers
 
         public async Task<IActionResult> CallVerisureService([FromServices] INodeServices nodeServices)
         {
-            var climateData = await nodeServices.InvokeExportAsync<ClimateData[]>(@"C:\Users\pa_suja\Source\Repos\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendClimateData");
+            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(@"C:\Users\pa_suja\Source\Repos\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendClimateData");
             var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(@"C:\Users\pa_suja\Source\Repos\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendAlarmStatus");
-            foreach (var data in climateData)
+            ClimateData[] climateData = new ClimateData[climateDataRaw.Length];
+            
+            for (int i = 0; i < climateDataRaw.Length; i++)
             {
-                data.Temperature = data.Temperature.Remove(data.Temperature.IndexOf('&'));
+
+                climateData[i] = new ClimateData();
+                climateData[i].Temperature = float.Parse(climateDataRaw[i].Temperature.Remove(climateDataRaw[i].Temperature.IndexOf('&')));
+                if (climateDataRaw[i].Humidity.Equals(string.Empty))
+                    climateData[i].Humidity = 0;
+                else
+                    climateData[i].Humidity = (float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%'))) > 0) ? climateData[i].Humidity : 0;
+                climateData[i].Location = climateDataRaw[i].Location;
+                climateData[i].Timestamp = climateDataRaw[i].Timestamp;
+
             }
             ViewData["ClimateData"] = climateData;
             ViewData["AlarmStatusDate"] = alarmData.Date;
@@ -32,12 +43,20 @@ namespace HomeService.Controllers
 
         }
     }
-    public class ClimateData
+    public class ClimateDataRaw
     {
         public string Temperature { get; set; }
         public string Humidity { get; set; }
         public string Location { get; set; }
         public string Timestamp { get; set; }
+    }
+    public class ClimateData
+    {
+        public float Temperature { get; set; }
+        public float Humidity { get; set; }
+        public string Location { get; set; }
+        public string Timestamp { get; set; }
+
     }
     public class AlarmStatus
     {
