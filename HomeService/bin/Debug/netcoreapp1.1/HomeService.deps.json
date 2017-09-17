@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "30ceff39829f6befc2cad31918af73a42225f1c4"
+    "signature": "f263b824e90013a5132959b77c0c67f3984da96c"
   },
   "compilationOptions": {
     "defines": [
@@ -28,7 +28,6 @@
           "Microsoft.AspNetCore.Mvc": "1.1.3",
           "Microsoft.AspNetCore.NodeServices": "1.0.0-beta-000016",
           "Microsoft.AspNetCore.StaticFiles": "1.1.2",
-          "Microsoft.DotNet.Watcher.Tools": "1.0.0-preview2-final",
           "Microsoft.EntityFrameworkCore.Design": "1.1.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "1.1.2",
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.2",
@@ -813,59 +812,6 @@
           "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {}
         }
       },
-      "Microsoft.DotNet.ProjectModel/1.0.0-rc3-003121": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0",
-          "Microsoft.Extensions.DependencyModel": "1.1.2",
-          "Newtonsoft.Json": "9.0.1",
-          "NuGet.Packaging": "3.5.0-beta2-1484",
-          "NuGet.RuntimeModel": "3.5.0-beta2-1484",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Reflection.Metadata": "1.4.1",
-          "System.Runtime.Loader": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Security.Cryptography.Algorithms": "4.3.0",
-          "System.Threading.Thread": "4.3.0",
-          "System.Xml.XDocument": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll": {}
-        }
-      },
-      "Microsoft.DotNet.Watcher.Core/1.0.0-preview2-final": {
-        "dependencies": {
-          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
-          "Microsoft.Extensions.FileProviders.Abstractions": "1.1.1",
-          "Microsoft.Extensions.FileProviders.Physical": "1.1.1",
-          "Microsoft.Extensions.FileSystemGlobbing": "1.1.1",
-          "Microsoft.Extensions.Logging.Abstractions": "1.1.2"
-        },
-        "runtime": {
-          "lib/netstandard1.6/Microsoft.DotNet.Watcher.Core.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.6/Microsoft.DotNet.Watcher.Core.dll": {}
-        }
-      },
-      "Microsoft.DotNet.Watcher.Tools/1.0.0-preview2-final": {
-        "dependencies": {
-          "Microsoft.DotNet.Watcher.Core": "1.0.0-preview2-final",
-          "Microsoft.Extensions.CommandLineUtils": "1.1.1",
-          "Microsoft.Extensions.Logging": "1.1.2",
-          "Microsoft.Extensions.Logging.Console": "1.1.2",
-          "Microsoft.NETCore.App": "1.1.2",
-          "System.Runtime.InteropServices.RuntimeInformation": "4.3.0"
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/dotnet-watch.dll": {}
-        },
-        "compile": {
-          "lib/netcoreapp1.0/dotnet-watch.dll": {}
-        }
-      },
       "Microsoft.EntityFrameworkCore/1.1.2": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Memory": "1.1.2",
@@ -1515,20 +1461,6 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "NuGet.Common/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.Process": "4.3.0",
-          "System.Security.Cryptography.Algorithms": "4.3.0",
-          "System.Threading.Thread": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/NuGet.Common.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/NuGet.Common.dll": {}
-        }
-      },
       "NuGet.Frameworks/3.5.0": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -1538,74 +1470,6 @@
         },
         "compile": {
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
-        }
-      },
-      "NuGet.Packaging/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "NuGet.Common": "3.5.0-beta2-1484",
-          "NuGet.Packaging.Core": "3.5.0-beta2-1484",
-          "System.IO.Compression": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/NuGet.Packaging.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/NuGet.Packaging.dll": {}
-        }
-      },
-      "NuGet.Packaging.Core/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "NuGet.Common": "3.5.0-beta2-1484",
-          "NuGet.Packaging.Core.Types": "3.5.0-beta2-1484",
-          "System.Xml.XDocument": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/NuGet.Packaging.Core.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/NuGet.Packaging.Core.dll": {}
-        }
-      },
-      "NuGet.Packaging.Core.Types/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "NuGet.Frameworks": "3.5.0",
-          "NuGet.Versioning": "3.5.0-beta2-1484"
-        },
-        "runtime": {
-          "lib/netstandard1.3/NuGet.Packaging.Core.Types.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/NuGet.Packaging.Core.Types.dll": {}
-        }
-      },
-      "NuGet.RuntimeModel/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "9.0.1",
-          "NuGet.Frameworks": "3.5.0",
-          "NuGet.Versioning": "3.5.0-beta2-1484",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.ObjectModel": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.3/NuGet.RuntimeModel.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.3/NuGet.RuntimeModel.dll": {}
-        }
-      },
-      "NuGet.Versioning/3.5.0-beta2-1484": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.1"
-        },
-        "runtime": {
-          "lib/netstandard1.0/NuGet.Versioning.dll": {}
-        },
-        "compile": {
-          "lib/netstandard1.0/NuGet.Versioning.dll": {}
         }
       },
       "Remotion.Linq/2.1.1": {
@@ -3947,27 +3811,6 @@
       "path": "microsoft.dotnet.platformabstractions/1.1.2",
       "hashPath": "microsoft.dotnet.platformabstractions.1.1.2.nupkg.sha512"
     },
-    "Microsoft.DotNet.ProjectModel/1.0.0-rc3-003121": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wnWw5KsKinG2wWxdoQIJXZlMFvPNhL7WmIyW9q6xrZFUi/uld5PC3ksq2QDZepF148FUjCIyTP+TnRwU3RJqUg==",
-      "path": "microsoft.dotnet.projectmodel/1.0.0-rc3-003121",
-      "hashPath": "microsoft.dotnet.projectmodel.1.0.0-rc3-003121.nupkg.sha512"
-    },
-    "Microsoft.DotNet.Watcher.Core/1.0.0-preview2-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1zFIzL712ET66ksTGj9S7dXYlR5O0FL2ekWoMv4CLRn0j38ilLbGX4ZuMQb9WW/iClqphrTcaAMCNsIJH76xaA==",
-      "path": "microsoft.dotnet.watcher.core/1.0.0-preview2-final",
-      "hashPath": "microsoft.dotnet.watcher.core.1.0.0-preview2-final.nupkg.sha512"
-    },
-    "Microsoft.DotNet.Watcher.Tools/1.0.0-preview2-final": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-43hHwT5qKapGdlta6Q55jxVbtuegToqBUZVv/exlGVzlqs6JfoSlNGGFoFwfQGSc+TAlOdP30NyEUDR095LsVw==",
-      "path": "microsoft.dotnet.watcher.tools/1.0.0-preview2-final",
-      "hashPath": "microsoft.dotnet.watcher.tools.1.0.0-preview2-final.nupkg.sha512"
-    },
     "Microsoft.EntityFrameworkCore/1.1.2": {
       "type": "package",
       "serviceable": true,
@@ -4297,54 +4140,12 @@
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
     },
-    "NuGet.Common/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rLBmcZOPVF7Mne/LumDNACZZyI5B67hjylt+Z/WSEUQ/IXE9nLv8IVL0+T9xljIaSSQCjO8cOtmJ6ztqrsQKcQ==",
-      "path": "nuget.common/3.5.0-beta2-1484",
-      "hashPath": "nuget.common.3.5.0-beta2-1484.nupkg.sha512"
-    },
     "NuGet.Frameworks/3.5.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-mj7pCguESABXPe27wleBICqbo1h0nm1bdfQN9GSUnKOdWI2QNhE3AB0SvAWrD0PYanzG65thsbCeB/uLj+XSwg==",
       "path": "nuget.frameworks/3.5.0",
       "hashPath": "nuget.frameworks.3.5.0.nupkg.sha512"
-    },
-    "NuGet.Packaging/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-/+7d3vvCel4KhJo6AyOneg07fbAkUsy/ORgIaxW3nNdJubCXSrAdg1wfQpwzBygmErjrPcdYzzk2y2Sc6m7hwQ==",
-      "path": "nuget.packaging/3.5.0-beta2-1484",
-      "hashPath": "nuget.packaging.3.5.0-beta2-1484.nupkg.sha512"
-    },
-    "NuGet.Packaging.Core/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Lsz2lgYH0mdOvuL8C3G4XLm9EaAheBOqrgLgnBNxCeLGLU+n+Zu8Lt6K1bpzgkeKyTyAhJdWbv/3lS4w7s04gw==",
-      "path": "nuget.packaging.core/3.5.0-beta2-1484",
-      "hashPath": "nuget.packaging.core.3.5.0-beta2-1484.nupkg.sha512"
-    },
-    "NuGet.Packaging.Core.Types/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-4mEXZBoe/RKTDVQGwdrl/f5gqolU2d1JWjpbGdQv5EG/xQCC8IQ8FTNYzk0+ydV/vuRM1yaNe+6UQ90nGE+1kQ==",
-      "path": "nuget.packaging.core.types/3.5.0-beta2-1484",
-      "hashPath": "nuget.packaging.core.types.3.5.0-beta2-1484.nupkg.sha512"
-    },
-    "NuGet.RuntimeModel/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vg29WbKcExD9AJrKMr7NB9pnp+0MTAcDHB6gFHCqRynSo6jgjC8q+ZPAlxC115rQiO8fqzOEP59Q8hx20anUtA==",
-      "path": "nuget.runtimemodel/3.5.0-beta2-1484",
-      "hashPath": "nuget.runtimemodel.3.5.0-beta2-1484.nupkg.sha512"
-    },
-    "NuGet.Versioning/3.5.0-beta2-1484": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Stok+SI5lWxOkTgZZM7jT4xuAZogm5+j85mKJeHSXb8o0OAbB+qDX9jkdM2wIEnjoR8R29J0nQYwk2Kl2lWFpA==",
-      "path": "nuget.versioning/3.5.0-beta2-1484",
-      "hashPath": "nuget.versioning.3.5.0-beta2-1484.nupkg.sha512"
     },
     "Remotion.Linq/2.1.1": {
       "type": "package",

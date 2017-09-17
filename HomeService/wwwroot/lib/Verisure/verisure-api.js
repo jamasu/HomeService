@@ -2,7 +2,6 @@
 	TODO: sanity check, require user/pass
  */
 
-
 var request = require('request');
 // ES6 object cloning
 var objectAssign = require('object-assign');
