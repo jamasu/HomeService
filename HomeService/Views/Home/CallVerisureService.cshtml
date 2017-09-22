@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HomeService.Controllers.ClimateData>
-<meta http-equiv="refresh" content="5" />
+<meta http-equiv="refresh" content="15" />
 <table class="table table-hover">
 
 	<thead>
@@ -18,26 +18,31 @@
 				</td>
 				<td>
 
-					@if (data.Temperature < 18.0)
+					@if (data.Temperature < 18.0 || data.Temperature > 22.0)
 					{
-						<p style="color:red">@String.Concat(data.Temperature, Html.Raw(((char)176).ToString())) </p>
+						<p style="color:palevioletred">@String.Concat(data.Temperature, Html.Raw(((char)176).ToString())) </p>
 					}
+
 					else
 					{
-
 						@String.Concat(data.Temperature, Html.Raw(((char)176).ToString()))
+
 					}
 				</td>
 				<td>
 					@if (data.Humidity > 55 || data.Humidity < 40 && data.Humidity != 0)
 					{
-						<p style="color:red">@data.Humidity % </p>
+						<p style="color:palevioletred">@data.Humidity % </p>
 					}
 
-					else
+					else if (data.Humidity != 0)
 					{
-						<p>@data.Humidity %</p>
+						<p> @data.Humidity %</p>
+					}
 
+					@if (data.Humidity == 0 )
+					{
+						<p> N/A</p>
 					}
 
 				</td>
@@ -48,24 +53,28 @@
 				<td>
 					@if (data.Humidity > 55 && data.Humidity != 0)
 					{
-						<p style="color:red">Høy fuktighet! </p>
+						<p style="color:palevioletred">Høy fuktighet! </p>
 					}
-					@if (data.Humidity <= 55 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22 || data.Humidity == 0)
+					@if (data.Humidity <= 55 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22)
+					{
+						<p>OK</p>
+					}
+					@if (data.Humidity == 0 && data.Temperature >= 18 && data.Temperature <= 22)
 					{
 						<p>OK</p>
 					}
 					@if (data.Humidity < 40 && data.Humidity != 0)
 					{
-						<p style="color:red">Lav fuktighet! </p>
+						<p style="color:palevioletred">Lav fuktighet! </p>
 					}
 
 					@if (data.Temperature < 18.0)
 					{
-						<p style="color:red"> For kaldt brrr! </p>
+						<p style="color:palevioletred"> kaldt brrr! </p>
 					}
 					@if (data.Temperature > 22.0)
 					{
-						<p style="color:red"> Varmt! </p>
+						<p style="color:palevioletred"> Varmt! </p>
 					}
 
 				</td>

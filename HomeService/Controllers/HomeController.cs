@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HomeService.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+
         public IActionResult Index()
         {
             return View();
@@ -19,8 +17,8 @@ namespace HomeService.Controllers
 
         public async Task<IActionResult> CallVerisureService([FromServices] INodeServices nodeServices)
         {
-            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(@"C:\Users\pa_suja\Source\Repos\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendClimateData");
-            var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(@"C:\Users\pa_suja\Source\Repos\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendAlarmStatus");
+            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(@"C:\Users\pa_suja\Documents\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendClimateData");
+            var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(@"C:\Users\pa_suja\Documents\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendAlarmStatus");
             ClimateData[] climateData = new ClimateData[climateDataRaw.Length];
             
             for (int i = 0; i < climateDataRaw.Length; i++)
@@ -29,18 +27,20 @@ namespace HomeService.Controllers
                 climateData[i] = new ClimateData();
                 climateData[i].Temperature = float.Parse(climateDataRaw[i].Temperature.Remove(climateDataRaw[i].Temperature.IndexOf('&')));
                 if (climateDataRaw[i].Humidity.Equals(string.Empty))
+                {
                     climateData[i].Humidity = 0;
+                }
                 else
                     climateData[i].Humidity = float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%')));
                 climateData[i].Location = climateDataRaw[i].Location;
-                climateData[i].Timestamp = climateDataRaw[i].Timestamp;
+                climateData[i].Timestamp = climateDataRaw[i].Timestamp.Replace("Today","I dag");
 
             }
             ViewData["ClimateData"] = climateData;
-            ViewData["AlarmStatusDate"] = alarmData.Date;
+            ViewData["AlarmStatusDate"] = alarmData.Date.Replace("Today", "I dag");
             ViewData["AlarmStatus"] = alarmData.Status;
             return View();
-
+             
         }
     }
     public class ClimateDataRaw

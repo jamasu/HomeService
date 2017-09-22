@@ -9,3 +9,14 @@ C:\Users\pa_suja\Source\Repos\HomeService\HomeService\obj\Debug\netcoreapp1.1\Ho
 C:\Users\pa_suja\Source\Repos\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.AssemblyInfo.cs
 C:\Users\pa_suja\Source\Repos\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.dll
 C:\Users\pa_suja\Source\Repos\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.pdb
+C:\Users\pa_suja\Documents\HomeService\HomeService\bin\Debug\netcoreapp1.1\HomeService.deps.json
+C:\Users\pa_suja\Documents\HomeService\HomeService\bin\Debug\netcoreapp1.1\HomeService.runtimeconfig.json
+C:\Users\pa_suja\Documents\HomeService\HomeService\bin\Debug\netcoreapp1.1\HomeService.runtimeconfig.dev.json
+C:\Users\pa_suja\Documents\HomeService\HomeService\bin\Debug\netcoreapp1.1\HomeService.dll
+C:\Users\pa_suja\Documents\HomeService\HomeService\bin\Debug\netcoreapp1.1\HomeService.pdb
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.csprojResolveAssemblyReference.cache
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.csproj.CoreCompileInputs.cache
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.AssemblyInfoInputs.cache
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.AssemblyInfo.cs
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.dll
+C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.pdb

@@ -1,7 +1,7 @@
 
 var config = {
-	username: '',
-	password: ''
+	username: 'suleiman.jama@icloud.com',
+	password: 'SLamdu&6'
 };
 
 var verisureApi = require('./verisure-api').setup(config);
