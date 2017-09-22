@@ -21,12 +21,12 @@ var formData, firstAlarmPoll, firstClimatePoll,
 var defaults = {
 	username: '',
 	password: '',
-	domain: 'https://mypages.verisure.com',
+	domain: 'https://mypages.verisure.com/',
 	auth_path: '/j_spring_security_check?locale=sv_SE',
 	alarmstatus_path: '/remotecontrol?_=',
 	climatedata_path: '/overview/climatedevice?_=',
-	alarmFields: [ 'status', 'date' ],
-	climateFields: [ 'location', 'humidity', 'temperature', 'timestamp' ]
+	alarmFields: [ 'status', 'date','name', 'label' ],
+	climateFields: ['location', 'humidity', 'temperature', 'timestamp', 'humidityAboveMaxAlertValue', 'humidityBelowMinAlertValue' ]
 };
 
 // request timeouts

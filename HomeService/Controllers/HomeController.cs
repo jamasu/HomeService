@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
-
+using HomeService.Business;
 namespace HomeService.Controllers
 {
     public class HomeController : Controller
@@ -39,28 +39,14 @@ namespace HomeService.Controllers
             ViewData["ClimateData"] = climateData;
             ViewData["AlarmStatusDate"] = alarmData.Date.Replace("Today", "I dag");
             ViewData["AlarmStatus"] = alarmData.Status;
+            ViewData["AlarmUser"] = alarmData.Name;
+            ViewData["AlarmLabel"] = alarmData.Label;
+          
             return View();
              
         }
     }
-    public class ClimateDataRaw
-    {
-        public string Temperature { get; set; }
-        public string Humidity { get; set; }
-        public string Location { get; set; }
-        public string Timestamp { get; set; }
-    }
-    public class ClimateData
-    {
-        public float Temperature { get; set; }
-        public float Humidity { get; set; }
-        public string Location { get; set; }
-        public string Timestamp { get; set; }
-
-    }
-    public class AlarmStatus
-    {
-        public string Date { get; set; }
-        public string Status { get; set; }
-    }
+   
+   
+    
 }

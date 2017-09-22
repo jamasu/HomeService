@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HomeService.Controllers.ClimateData>
+﻿@model IEnumerable<HomeService.Business.ClimateData>
 <meta http-equiv="refresh" content="15" />
 <table class="table table-hover">
 
@@ -9,7 +9,7 @@
 	<th>Tidskontroll</th>
 	<th>Informasjon</th>
 	<tbody>
-		@foreach (var data in ViewData["ClimateData"] as IEnumerable<HomeService.Controllers.ClimateData>)
+		@foreach (var data in ViewData["ClimateData"] as IEnumerable<HomeService.Business.ClimateData>)
 		{
 
 			<tr class="table-info">
@@ -40,7 +40,7 @@
 						<p> @data.Humidity %</p>
 					}
 
-					@if (data.Humidity == 0 )
+					@if (data.Humidity == 0)
 					{
 						<p> N/A</p>
 					}
@@ -82,21 +82,25 @@
 
 		}
 	</tbody>
-	</thead>
 </table>
 
 @if (ViewData["AlarmStatus"].Equals("unarmed"))
 {
 	<div class="alert alert-danger" role="alert">
-		<p>@ViewData["AlarmStatus"]: Ulåst</p>
+		<p>@ViewData["AlarmStatus"]: Ulåst(@ViewData["AlarmLabel"])</p>
+		<p>Bruker: @ViewData["AlarmUser"]</p>
 		<p>@ViewData["AlarmStatusDate"]</p>
+		
 	</div>
 }
 else
 {
 	<div class="alert alert-success" role="alert">
-		<p>@ViewData["AlarmStatus"]: Låst</p>
+		<p>@ViewData["AlarmStatus"]: Låst(@ViewData["AlarmLabel"])</p>
+		<p>Bruker: @ViewData["AlarmUser"]</p>
 		<p>@ViewData["AlarmStatusDate"]</p>
+		<p>@ViewData["AlarmStatusDate"]</p>
+		
 	</div>
 }
 
