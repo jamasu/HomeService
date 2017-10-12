@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<HomeService.Business.ClimateData>
-<meta http-equiv="refresh" content="15" />
+@using HomeService.Business
+<meta http-equiv="refresh" content="60" />
 <table class="table table-hover">
 
 	<thead>
@@ -14,7 +15,7 @@
 
 			<tr class="table-info">
 				<td>
-					@data.Location
+					@Helper.ToLower(data.Location)
 				</td>
 				<td>
 
@@ -51,11 +52,11 @@
 				</td>
 
 				<td>
-					@if (data.Humidity > 55 && data.Humidity != 0)
+					@if (data.Humidity > 50 && data.Humidity != 0)
 					{
 						<p style="color:palevioletred">Høy fuktighet! </p>
 					}
-					@if (data.Humidity <= 55 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22)
+					@if (data.Humidity <= 50 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22)
 					{
 						<p>OK</p>
 					}
@@ -63,7 +64,7 @@
 					{
 						<p>OK</p>
 					}
-					@if (data.Humidity < 40 && data.Humidity != 0)
+					@if (data.Humidity < 30 && data.Humidity != 0)
 					{
 						<p style="color:palevioletred">Lav fuktighet! </p>
 					}
@@ -98,7 +99,6 @@ else
 	<div class="alert alert-success" role="alert">
 		<p>@ViewData["AlarmStatus"]: Låst(@ViewData["AlarmLabel"])</p>
 		<p>Bruker: @ViewData["AlarmUser"]</p>
-		<p>@ViewData["AlarmStatusDate"]</p>
 		<p>@ViewData["AlarmStatusDate"]</p>
 		
 	</div>

@@ -10802,11 +10802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
+      "projectUniqueName": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
       "projectName": "HomeService",
-      "projectPath": "c:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
+      "projectPath": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
       "packagesPath": "C:\\Users\\pa_suja\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\obj\\",
+      "outputPath": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pa_suja\\AppData\\Roaming\\NuGet\\NuGet.Config",

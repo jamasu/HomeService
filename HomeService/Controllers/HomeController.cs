@@ -9,7 +9,8 @@ namespace HomeService.Controllers
 {
     public class HomeController : Controller
     {
-
+        public const string VeriSureAppFilePath = @"wwwroot\lib\Verisure\verisureApp.js";
+       
         public IActionResult Index()
         {
             return View();
@@ -17,8 +18,8 @@ namespace HomeService.Controllers
 
         public async Task<IActionResult> CallVerisureService([FromServices] INodeServices nodeServices)
         {
-            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(@"C:\Users\pa_suja\Documents\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendClimateData");
-            var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(@"C:\Users\pa_suja\Documents\HomeService\HomeService\wwwroot\lib\Verisure\verisureApp.js", "sendAlarmStatus");
+            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(VeriSureAppFilePath, "sendClimateData");
+            var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(VeriSureAppFilePath, "sendAlarmStatus");
             ClimateData[] climateData = new ClimateData[climateDataRaw.Length];
             
             for (int i = 0; i < climateDataRaw.Length; i++)
@@ -41,7 +42,7 @@ namespace HomeService.Controllers
             ViewData["AlarmStatus"] = alarmData.Status;
             ViewData["AlarmUser"] = alarmData.Name;
             ViewData["AlarmLabel"] = alarmData.Label;
-          
+            
             return View();
              
         }
