@@ -12,7 +12,7 @@ namespace HomeService.Business
             char[] temp = new char[origString.Length];
             Dictionary<char, char> toLower = new Dictionary<char, char>();
             InitAlphaDictionary(toLower);
-
+ 
             try
             {
                 for (int i = 0; i < origString.Length; i++)
