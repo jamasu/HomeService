@@ -41,8 +41,7 @@ namespace HomeService.Controllers
             ViewData["AlarmStatusDate"] = alarmData.Date.Replace("Today", "I dag");
             ViewData["AlarmStatus"] = alarmData.Status;
             ViewData["AlarmUser"] = alarmData.Name;
-            ViewData["AlarmLabel"] = alarmData.Label;
-            
+            ViewData["AlarmLabel"] = alarmData.Label;            
             return View();
              
         }

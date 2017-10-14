@@ -7390,16 +7390,16 @@
       ]
     },
     "System.Interactive.Async/3.0.0": {
-      "sha512": "iyrgkZz9Dzm0fiPouQszFC3SO/46k6AYd/jG9bu+/o0AoDMaRXtlo3TIuWVNtOuJFd1noL963QouroJ0T3rImw==",
+      "sha512": "UEM+WmG1Oq0bNbPx/E1jaIQ83QOrPfVDUyuYBtG6D6DpB77ytv9flPterMujumpHuoRjSc0ilSB8w41fQc05dw==",
       "type": "package",
       "path": "system.interactive.async/3.0.0",
       "files": [
+        "System.Interactive.Async.3.0.0.nupkg.sha512",
+        "System.Interactive.Async.nuspec",
         "lib/net45/System.Interactive.Async.dll",
         "lib/net45/System.Interactive.Async.xml",
         "lib/netstandard1.0/System.Interactive.Async.dll",
-        "lib/netstandard1.0/System.Interactive.Async.xml",
-        "system.interactive.async.3.0.0.nupkg.sha512",
-        "system.interactive.async.nuspec"
+        "lib/netstandard1.0/System.Interactive.Async.xml"
       ]
     },
     "System.IO/4.3.0": {
@@ -10802,11 +10802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
+      "projectUniqueName": "C:\\Users\\pa_suja\\Source\\Repos\\HomeService\\HomeService\\HomeService.csproj",
       "projectName": "HomeService",
-      "projectPath": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\HomeService.csproj",
+      "projectPath": "C:\\Users\\pa_suja\\Source\\Repos\\HomeService\\HomeService\\HomeService.csproj",
       "packagesPath": "C:\\Users\\pa_suja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pa_suja\\Documents\\HomeService\\HomeService\\obj\\",
+      "outputPath": "C:\\Users\\pa_suja\\Source\\Repos\\HomeService\\HomeService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pa_suja\\AppData\\Roaming\\NuGet\\NuGet.Config",

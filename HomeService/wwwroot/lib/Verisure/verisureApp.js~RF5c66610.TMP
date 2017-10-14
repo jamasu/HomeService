@@ -1,0 +1,26 @@
+module.exports = function (callback) {
+	var config = {
+		username: 'suleiman.jama@icloud.com',
+		password: 'SLamdu&6'
+	};
+	var data = "";
+	function alarmData(_data) {
+		data += _data;
+		console.log(data);
+	}
+	var verisureApi = require('./verisure-api').setup(config);
+	
+	// alarm state changes
+	verisureApi.on('alarmChange', alarmData);
+	
+	callback(null, alarmData);
+	
+	// climate measurement changes
+	var climateData;
+	verisureApi.on('climateChange', climateData);
+
+	function log(data) {
+		console.log(data);
+
+	}
+}

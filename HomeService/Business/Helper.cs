@@ -10,22 +10,22 @@ namespace HomeService.Business
         public static string ToLower(string origString)
         {
             char[] temp = new char[origString.Length];
-            Dictionary<char, char> toLower = new Dictionary<char, char>();
-            InitAlphaDictionary(toLower);
+            Dictionary<char, char> toLowerCase = new Dictionary<char, char>();
+            InitAlphaDictionary(toLowerCase);
  
             try
             {
                 for (int i = 0; i < origString.Length; i++)
                 {
 
-                    if (toLower.ContainsKey(origString.ElementAt(i)))
+                    if (toLowerCase.ContainsKey(origString.ElementAt(i)))
                     {
                         if (i == 0)
                         {
                             temp[i] = origString.ElementAt(i);
                             continue;
                         }
-                        temp[i] = toLower[origString.ElementAt(i)];
+                        temp[i] = toLowerCase[origString.ElementAt(i)];
                     }
                     else
                         temp[i] = origString.ElementAt(i);

@@ -2,7 +2,7 @@
 @using HomeService.Business
 <meta http-equiv="refresh" content="60" />
 <table class="table table-hover">
- 
+
 	<thead>
 	<th>Lokasjon</th>
 	<th>Temperatur</th>
@@ -54,7 +54,7 @@
 				<td>
 					@if (data.Humidity > 50 && data.Humidity != 0)
 					{
-						<p style="color:palevioletred">Høy fuktighet! </p>
+						<p style="color:darkred">Høy fuktighet! </p>
 					}
 					@if (data.Humidity <= 50 && data.Humidity >= 40 && data.Temperature >= 18 && data.Temperature <= 22)
 					{
@@ -66,16 +66,16 @@
 					}
 					@if (data.Humidity < 30 && data.Humidity != 0)
 					{
-						<p style="color:palevioletred">Lav fuktighet! </p>
+						<p style="color:darkred">Lav fuktighet! </p>
 					}
 
 					@if (data.Temperature < 18.0)
 					{
-						<p style="color:palevioletred"> kaldt brrr! </p>
+						<p style="color:darkred"> kaldt brrr! </p>
 					}
 					@if (data.Temperature > 22.0)
 					{
-						<p style="color:palevioletred"> Varmt! </p>
+						<p style="color:darkred"> Varmt! </p>
 					}
 
 				</td>
@@ -87,27 +87,73 @@
 
 @if (ViewData["AlarmStatus"].Equals("unarmed"))
 {
-	<div class="alert alert-danger" role="alert">
+	<div class="alert alert-success" role="alert">
 		<p>@ViewData["AlarmStatus"]: Ulåst(@ViewData["AlarmLabel"])</p>
 		<p>Bruker: @ViewData["AlarmUser"]</p>
 		<p>@ViewData["AlarmStatusDate"]</p>
-		
+
 	</div>
 }
 else
 {
-	<div class="alert alert-success" role="alert">
+	<div class="alert alert-danger" role="alert">
 		<p>@ViewData["AlarmStatus"]: Låst(@ViewData["AlarmLabel"])</p>
 		<p>Bruker: @ViewData["AlarmUser"]</p>
 		<p>@ViewData["AlarmStatusDate"]</p>
-		
+
 	</div>
 }
 
+@section scripts
+	{
+	<script>
+		var ctxL = document.getElementById("lineChart").getContext('2d');
+		var myLineChart = new Chart(ctxL, {
+			type: 'line',
+			data: {
+				labels: ["Gang", "Hoved soverom", "Nooras rom", "Stue", "Sahras rom", "Kjøkken"],
+				
+
+							datasets: [
+  					{
+						label: "Fuktighet",
+						fillColor: "rgba(010,220,220,0.2)",
+						strokeColor: "rgba(220,220,220,1)",
+						pointColor: "rgba(220,220,220,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(220,220,220,1)",
+						data: [@foreach (var item in @ViewData["ClimateData"] as IEnumerable<HomeService.Business.ClimateData>)
+						{
+							@Math.Round(item.Humidity)
+							@Html.Raw(",");
+								}]
+					},
+					{
+						label: "Temperatur",
+						fillColor: "rgba(151,187,205,0.2)",
+						strokeColor: "rgba(151,187,205,1)",
+						pointColor: "rgba(151,187,205,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(151,187,205,1)",
+						data: [@foreach (var item in @ViewData["ClimateData"] as IEnumerable<HomeService.Business.ClimateData>)
+						{
+							@Math.Round(item.Temperature)
+							@Html.Raw(",");
+						}]
+					}
+				]
+			},
+			options: {
+				responsive: true
+			}
+		});
+
+	</script>
+
+}
 
 
-
-
-
-
+<canvas id="lineChart"></canvas>
 
