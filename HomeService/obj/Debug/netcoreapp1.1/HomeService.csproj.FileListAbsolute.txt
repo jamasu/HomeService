@@ -20,3 +20,6 @@ C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeS
 C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.AssemblyInfo.cs
 C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.dll
 C:\Users\pa_suja\Documents\HomeService\HomeService\obj\Debug\netcoreapp1.1\HomeService.pdb
+C:\Users\pa_suja\Source\Repos\HomeService\HomeService\bin\Debug\netcoreapp1.1\CognitiveServicesTTS.exe
+C:\Users\pa_suja\Source\Repos\HomeService\HomeService\bin\Debug\netcoreapp1.1\CognitiveServicesTTS.pdb
+C:\Users\pa_suja\Source\Repos\HomeService\HomeService\bin\Debug\netcoreapp1.1\CognitiveServicesTTS.exe.config
