@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeService", "HomeService\HomeService.csproj", "{E1BDC66A-CF75-414E-8C4C-58BB41FF5B2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CognitiveServicesTTS", "..\VoiceCortana\CognitiveServicesTTS.csproj", "{2D0DB2A1-0A63-472E-ADB5-13FDC50D7350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CognitiveServicesTTS", "VoiceCortana\CognitiveServicesTTS.csproj", "{2D0DB2A1-0A63-472E-ADB5-13FDC50D7350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
