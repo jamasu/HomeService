@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using System.Diagnostics;
+using HomeService.Controllers;
 
 namespace HomeService
 {
     public class Program
     {
+       
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
@@ -19,7 +22,10 @@ namespace HomeService
                 .UseApplicationInsights()
                 .Build();
 
+  
             host.Run();
-        }
+          
+        }  
+       
     }
 }

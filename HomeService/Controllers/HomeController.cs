@@ -18,9 +18,18 @@ namespace HomeService.Controllers
         private const string APIToken = "f905040cdb3e4d9482aba2d35d3a2bae";
         private const string VoiceFile = @"Business\VoiceFile.txt";
         private const string CognitiveServiceRun = @"C:\Users\pa_suja\Source\Repos\HomeService\VoiceCortana\bin\Debug\CognitiveServicesTTS.exe";
-        public IActionResult Index()
+        public INodeServices NodeServices { get; set; }
+        public EventHandler AlarmEvent;
+        public string AlarmTime { get; set; }
+        public HomeController(INodeServices nodeServices)
         {
-            return View();
+            NodeServices = nodeServices;
+        }
+
+        public async Task<IActionResult> IndexAsync()
+        {
+            await CallVerisureService(NodeServices);
+            return View("CallVerisureService");
         }
 
 
@@ -50,14 +59,70 @@ namespace HomeService.Controllers
             ViewData["AlarmStatus"] = alarmData.Status;
             ViewData["AlarmUser"] = alarmData.Name;
             ViewData["AlarmLabel"] = alarmData.Label;
-
+            AlarmTime = alarmData.Date;
             WriteToVoiceFile(climateData, alarmData);
             StartVoiceProgram();
 
+
+            ListenAlarmChanges listenAlarmChanges = new ListenAlarmChanges(this); //Create listening on Alarmchanges
+            listenAlarmChanges.Listen(nodeServices);
+            Begin(); //begin eventhandler
             return View();
 
         }
+        public async Task ProcessNodeData([FromServices] INodeServices nodeServices)
+        {
+            var climateDataRaw = await nodeServices.InvokeExportAsync<ClimateDataRaw[]>(VeriSureAppFilePath, "sendClimateData");
+            var alarmData = await nodeServices.InvokeExportAsync<AlarmStatus>(VeriSureAppFilePath, "sendAlarmStatus");
+            ClimateData[] climateData = new ClimateData[climateDataRaw.Length];
 
+            for (int i = 0; i < climateDataRaw.Length; i++)
+            {
+
+                climateData[i] = new ClimateData();
+                climateData[i].Temperature = float.Parse(climateDataRaw[i].Temperature.Remove(climateDataRaw[i].Temperature.IndexOf('&')));
+                if (climateDataRaw[i].Humidity.Equals(string.Empty))
+                {
+                    climateData[i].Humidity = 0;
+                }
+                else
+                    climateData[i].Humidity = float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%')));
+                climateData[i].Location = climateDataRaw[i].Location;
+                climateData[i].Timestamp = climateDataRaw[i].Timestamp.Replace("Today", "I dag");
+
+            }
+            ViewData["ClimateData"] = climateData;
+            ViewData["AlarmStatusDate"] = alarmData.Date.Replace("Today", "I dag");
+            ViewData["AlarmStatus"] = alarmData.Status;
+            ViewData["AlarmUser"] = alarmData.Name;
+            ViewData["AlarmLabel"] = alarmData.Label;
+            AlarmTime = alarmData.Date;
+        }
+        public void Begin()
+        {
+            Thread t1 = new Thread(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(2000);
+                    if (AlarmEvent != null)
+                    {
+                        AlarmEvent(this, null);
+                    }
+                }
+            });
+            t1.Start();
+        }
+        public DateTime GetAlarmTime()
+        {
+            string alarmTimeNow = AlarmTime.Replace("Today", "");
+            alarmTimeNow = alarmTimeNow.Replace("Yesterday", "");
+            alarmTimeNow = alarmTimeNow.Replace("PM", "");
+            alarmTimeNow = alarmTimeNow.Replace("AM", "");
+            DateTime dt = Convert.ToDateTime(alarmTimeNow);
+
+            return dt;
+        }
         public void WriteToVoiceFile(ClimateData[] climateDataObjecsToFile, AlarmStatus alarmData)
         {
             FileStream fstream = new FileStream(VoiceFile, FileMode.Truncate);
@@ -71,9 +136,9 @@ namespace HomeService.Controllers
         private static string ClimateStatusCheck(ClimateData[] climateDataObjecsToFile, AlarmStatus alarmData)
         {
             string fileContent = "";
-            fileContent += "Velkommen " + alarmData.Name; fileContent += Environment.NewLine;
+            fileContent += "Velkommen hjem " + alarmData.Name; fileContent += Environment.NewLine;
             fileContent += Environment.NewLine;
-            fileContent += "klokken er " + DateTime.Now.ToString("hh:mm"); fileContent += Environment.NewLine;
+            fileContent += "klokken er.! " + DateTime.Now.ToString("HH:mm"); fileContent += Environment.NewLine;
             fileContent += "Utfører system sjekk !.";
 
             for (int i = 0; i < climateDataObjecsToFile.Length; i++)
@@ -112,6 +177,37 @@ namespace HomeService.Controllers
             psi.FileName = CognitiveServiceRun;
             psi.WorkingDirectory = System.IO.Path.GetDirectoryName(psi.FileName);
             Process.Start(psi);
+        }
+    }
+    public class ListenAlarmChanges
+    {
+        public HomeController HomeController { get; set; }
+        ~ListenAlarmChanges()
+        {
+
+        }
+        public ListenAlarmChanges(HomeController homeController)
+        {
+            HomeController = homeController;
+        }
+        public void Listen([FromServices] INodeServices ns)
+        {
+            HomeController.AlarmEvent += OnAlarmChanged;
+
+        }
+        public void OnAlarmChanged(Object sender, EventArgs e)
+        {
+
+            HomeController.ProcessNodeData(HomeController.NodeServices).ContinueWith(t => Console.WriteLine(t.Exception),
+        TaskContinuationOptions.OnlyOnFaulted);
+
+            if (DateTime.Now.ToString("hh:mm").Equals(HomeController.GetAlarmTime().ToString("hh:mm")))
+            {
+                HomeController.StartVoiceProgram();
+                HomeController.Dispose();
+                GC.Collect();
+                Thread.Sleep(60000); //sleep for a minute to let this AlarmEvent pass.
+            }
         }
     }
 }
