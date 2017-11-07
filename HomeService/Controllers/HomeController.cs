@@ -65,7 +65,7 @@ namespace HomeService.Controllers
 
 
             ListenAlarmChanges listenAlarmChanges = new ListenAlarmChanges(this); //Create listening on Alarmchanges
-            listenAlarmChanges.Listen(nodeServices);
+            listenAlarmChanges.Listen();
             Begin(); //begin eventhandler
             return View();
 
@@ -136,7 +136,7 @@ namespace HomeService.Controllers
         private static string ClimateStatusCheck(ClimateData[] climateDataObjecsToFile, AlarmStatus alarmData)
         {
             string fileContent = "";
-            fileContent += "Velkommen hjem " + alarmData.Name; fileContent += Environment.NewLine;
+            fileContent += "Velkommen " + alarmData.Name; fileContent += Environment.NewLine;
             fileContent += Environment.NewLine;
             fileContent += "klokken er.! " + DateTime.Now.ToString("HH:mm"); fileContent += Environment.NewLine;
             fileContent += "Utfører system sjekk !.";
@@ -177,37 +177,6 @@ namespace HomeService.Controllers
             psi.FileName = CognitiveServiceRun;
             psi.WorkingDirectory = System.IO.Path.GetDirectoryName(psi.FileName);
             Process.Start(psi);
-        }
-    }
-    public class ListenAlarmChanges
-    {
-        public HomeController HomeController { get; set; }
-        ~ListenAlarmChanges()
-        {
-
-        }
-        public ListenAlarmChanges(HomeController homeController)
-        {
-            HomeController = homeController;
-        }
-        public void Listen([FromServices] INodeServices ns)
-        {
-            HomeController.AlarmEvent += OnAlarmChanged;
-
-        }
-        public void OnAlarmChanged(Object sender, EventArgs e)
-        {
-
-            HomeController.ProcessNodeData(HomeController.NodeServices).ContinueWith(t => Console.WriteLine(t.Exception),
-        TaskContinuationOptions.OnlyOnFaulted);
-
-            if (DateTime.Now.ToString("hh:mm").Equals(HomeController.GetAlarmTime().ToString("hh:mm")))
-            {
-                HomeController.StartVoiceProgram();
-                HomeController.Dispose();
-                GC.Collect();
-                Thread.Sleep(60000); //sleep for a minute to let this AlarmEvent pass.
-            }
         }
     }
 }
