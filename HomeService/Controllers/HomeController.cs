@@ -18,18 +18,21 @@ namespace HomeService.Controllers
         private const string APIToken = "f905040cdb3e4d9482aba2d35d3a2bae";
         private const string VoiceFile = @"Business\VoiceFile.txt";
         private const string CognitiveServiceRun = @"C:\Users\pa_suja\Source\Repos\HomeService\VoiceCortana\bin\Debug\CognitiveServicesTTS.exe";
+
         public INodeServices NodeServices { get; set; }
         public EventHandler AlarmEvent;
+
         public string AlarmTime { get; set; }
+        public bool BeginStarted { get; set; }
+
         public HomeController(INodeServices nodeServices)
         {
             NodeServices = nodeServices;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public IActionResult Index()
         {
-            await CallVerisureService(NodeServices);
-            return View("CallVerisureService");
+            return View("Index");
         }
 
 
@@ -50,6 +53,7 @@ namespace HomeService.Controllers
                 }
                 else
                     climateData[i].Humidity = float.Parse(climateDataRaw[i].Humidity.Remove(climateDataRaw[i].Humidity.IndexOf('%')));
+
                 climateData[i].Location = climateDataRaw[i].Location;
                 climateData[i].Timestamp = climateDataRaw[i].Timestamp.Replace("Today", "I dag");
 
@@ -63,10 +67,14 @@ namespace HomeService.Controllers
             WriteToVoiceFile(climateData, alarmData);
             StartVoiceProgram();
 
+            if (!BeginStarted)
+            {
+                BeginStarted = true;
+                ListenAlarmChanges listenAlarmChanges = new ListenAlarmChanges(this); //Create listening on Alarmchanges
+                listenAlarmChanges.Listen();
+                Begin(); //begin eventhandler run only once.
+            }
 
-            ListenAlarmChanges listenAlarmChanges = new ListenAlarmChanges(this); //Create listening on Alarmchanges
-            listenAlarmChanges.Listen();
-            Begin(); //begin eventhandler
             return View();
 
         }
@@ -100,18 +108,18 @@ namespace HomeService.Controllers
         }
         public void Begin()
         {
-            Thread t1 = new Thread(() =>
+            Thread thread = new Thread(() =>
             {
                 while (true)
                 {
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
                     if (AlarmEvent != null)
                     {
                         AlarmEvent(this, null);
                     }
                 }
             });
-            t1.Start();
+            thread.Start();
         }
         public DateTime GetAlarmTime()
         {

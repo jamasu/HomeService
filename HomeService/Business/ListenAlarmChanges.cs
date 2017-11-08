@@ -12,10 +12,7 @@ namespace HomeService.Business
     public class ListenAlarmChanges
     {
         public HomeController HomeController { get; set; }
-        ~ListenAlarmChanges()
-        {
-
-        }
+       
         public ListenAlarmChanges(HomeController homeController)
         {
             HomeController = homeController;
@@ -33,11 +30,21 @@ namespace HomeService.Business
 
             if (DateTime.Now.ToString("hh:mm").Equals(HomeController.GetAlarmTime().ToString("hh:mm")))
             {
-                HomeController.StartVoiceProgram();
+
+                //HomeController.StartVoiceProgram();
+                HomeController.CallVerisureService(HomeController.NodeServices).ContinueWith(t => Console.WriteLine(t.Exception),
+        TaskContinuationOptions.OnlyOnFaulted);
                 HomeController.Dispose();
                 GC.Collect();
                 Thread.Sleep(60000); //sleep for a minute to let this AlarmEvent pass.
             }
+
+            //TODO Doors open notification
+            //TODO Wake up in the morning notifications
+            //TODO *** Entertainment notification ie. netflix API.
+            //TODO *** Connect to calendar and notify about approaching events
+            //TODO *** Weather, news etc.
+
         }
     }
 }
